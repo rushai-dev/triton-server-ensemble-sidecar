@@ -1,5 +1,10 @@
+from utils.app_exceptions import AppExceptionCase
 from fastapi import FastAPI
+
 from routers import inference
+
+from utils.app_exceptions import app_exception_handler
+
 
 app = FastAPI()
 

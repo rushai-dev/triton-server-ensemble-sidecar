@@ -6,4 +6,4 @@ class ImageItem(BaseModel):
     inputs: Optional[UploadFile] = File(None)
 
 class TextItem(BaseModel):
-    inputs: Optional[List[str]]
+    inputs: List[str]
