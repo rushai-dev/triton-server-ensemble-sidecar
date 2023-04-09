@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM nvcr.io/nvidia/tritonserver:21.09-py3-sdk
 
 WORKDIR /app
 

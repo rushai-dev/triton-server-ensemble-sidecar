@@ -3,4 +3,3 @@ uvicorn
 loguru
 pydantic
 python-multipart
-tritonclient
