@@ -1,6 +1,6 @@
 import tritongrpcclient
 import numpy as np
-import os
+import os, io
 
 class InferenceService():
 
@@ -18,14 +18,15 @@ class InferenceService():
         Loads an encoded image as an array of bytes.
         
         """
-        return np.frombytes(data_bytes, dtype=np.uint8)
+        img_io = io.BytesIO(data_bytes)
+        return  np.frombuffer(img_io.getvalue(), dtype=np.uint8)
 
 
     def predict(self, inputs):
 
         res = []
 
-        for input in inputs:
+        for input in inputs["inputs"]:
 
             image_data = self.load_image(input["content-bytes"])
             image_data = np.expand_dims(image_data, axis=0)
@@ -51,4 +52,6 @@ class InferenceService():
 
             res.append(results)
         
-        return res
+        return {
+            "result": res
+        }
